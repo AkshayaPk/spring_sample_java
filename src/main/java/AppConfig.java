@@ -1,6 +1,8 @@
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 import com.pluralsight.repository.CustomerRepository;
 import com.pluralsight.repository.HibernateCustomerRespositoryImpl;
@@ -9,7 +11,14 @@ import com.pluralsight.service.CustomerServiceImpl;
 
 @Configuration
 @ComponentScan({"com.pluralsight"})
+@PropertySource("app.properties")
 public class AppConfig {
+	
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer()
+	{
+		return new PropertySourcesPlaceholderConfigurer();
+	}
 	
 	/**
 	 * We are going to take this one step further and take off this bean named customerService
